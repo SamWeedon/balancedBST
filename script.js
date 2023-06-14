@@ -95,24 +95,39 @@ function find(target, root) {
         return find(target, root.left);
     }
 }
-/*
+
+function levelOrder(root) {
+    /*
+    We need a queue for saving the discovered nodes. First, we 
+    enqueue the root node (arr.push(root)).
+
+    If the queue is not empty, we can dequeue the node from the 
+    queue  (arr.shift()), and print it/store it in a results array.
+
+    Then we can enqueue the children of the root node. Next we 
+    dequeue/print the first child and enqueue its children, simply
+    repeating the process. Becauseof FIFO (first come first served)
+    this will play out in level-order. The base-case will be when
+    the nodes have no children.
+    */
+    let queue = [];
+    let results = [];
+    if (root === null) return;
+    queue.push(root);
+    while (queue[0]) {
+        let currentNode = queue[0];
+        results.push(queue.shift().data);
+        if (currentNode.left) {
+            queue.push(currentNode.left);
+        }
+        if (currentNode.right) {
+            queue.push(currentNode.right);
+        }
+    }
+    return results;
+}
+
 const tree1 = Tree([1,2,4,5,6,7]);
-prettyPrint(tree1.root);
-
-insert(3,tree1.root);
-
-prettyPrint(tree1.root);
-
-deleteNode(3, tree1.root);
-prettyPrint(tree1.root);
-
-deleteNode(1, tree1.root);
-prettyPrint(tree1.root);
-
-deleteNode(6, tree1.root);
-prettyPrint(tree1.root);
-*/
 const tree2 = Tree([1, 3, 6, 9, 13, 17, 22, 27, 33, 39]);
 prettyPrint(tree2.root);
-//deleteNode(13, tree2.root);
-console.log(find(33, tree2.root));
+console.log(levelOrder(tree2.root));
