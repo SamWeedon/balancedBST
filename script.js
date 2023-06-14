@@ -83,6 +83,18 @@ function deleteNode(val, root) {
         return root;
     }
 }
+
+function find(target, root) {
+    if (root === null || root.data === target) {
+        return root;
+    }
+    if (target > root.data) {
+        return find(target, root.right);
+    }
+    else {
+        return find(target, root.left);
+    }
+}
 /*
 const tree1 = Tree([1,2,4,5,6,7]);
 prettyPrint(tree1.root);
@@ -102,5 +114,5 @@ prettyPrint(tree1.root);
 */
 const tree2 = Tree([1, 3, 6, 9, 13, 17, 22, 27, 33, 39]);
 prettyPrint(tree2.root);
-deleteNode(13, tree2.root);
-prettyPrint(tree2.root);
+//deleteNode(13, tree2.root);
+console.log(find(33, tree2.root));
