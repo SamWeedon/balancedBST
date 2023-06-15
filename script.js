@@ -127,7 +127,40 @@ function levelOrder(root) {
     return results;
 }
 
+function preorder(root) {
+/*
+First visit root, then left subtree, then right subtree.
+Print the root data. Then make a recursive call to  the left child.
+Then make a recursive call to the right subtree. Base case is if
+root is null.
+*/
+  if (root === null) return;
+  console.log(root.data);
+  preorder(root.left);
+  preorder(root.right);
+}
+
+function inorder(root) {
+    /*
+    First visit left subtree, then root, then right subtree
+    */
+   if (root === null) return;
+   inorder(root.left);
+   console.log(root.data);
+   inorder(root.right);
+}
+
+function postorder(root) {
+    /*
+    First visit left subtree, then right subtree, then root
+    */
+   if (root === null) return;
+   postorder(root.left);
+   postorder(root.right);
+   console.log(root.data);
+}
+
 const tree1 = Tree([1,2,4,5,6,7]);
 const tree2 = Tree([1, 3, 6, 9, 13, 17, 22, 27, 33, 39]);
 prettyPrint(tree2.root);
-console.log(levelOrder(tree2.root));
+postorder(tree2.root)
