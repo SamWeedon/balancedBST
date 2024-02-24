@@ -109,7 +109,9 @@ function levelOrder(root, callback) {
   queue.push(root);
   while (queue[0]) {
     let currentNode = queue[0];
-    callback(currentNode);
+    if (callback) {
+      callback(currentNode);
+    }
     results.push(queue.shift().data);
     if (currentNode.left) {
       queue.push(currentNode.left);
@@ -166,9 +168,9 @@ function postorder(root, results = [], callback) {
   return results;
 }
 
-function height(node) {
-  if (node === null || !node || find(node) === false) return -1;
-  return Math.max(height(node.left), height(node.right)) + 1;
+function height(node, root) {
+  if (node === null || !node || find(node.data, root) === false) return -1;
+  return Math.max(height(node.left, root), height(node.right, root)) + 1;
 }
 
 function depth(root, node) {
@@ -192,3 +194,4 @@ prettyPrint(tree1.root);
 //deleteNode(6, tree1.root);
 //prettyPrint(tree1.root);
 console.log(preorder(tree1.root));
+console.log(height(tree1.root, tree1.root));
