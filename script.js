@@ -200,26 +200,24 @@ function rebalance(tree) {
   tree.root = buildTree(inorderArray, 0, inorderArray.length - 1);
 }
 
-const tree1 = Tree([1, 2, 4, 5, 6, 7]);
-const tree2 = Tree([1, 3, 6, 9, 13, 17, 22, 27, 33, 39]);
-prettyPrint(tree1.root);
-console.log(isBalanced(tree1.root));
-//insert(3, tree1.root);
-//prettyPrint(tree1.root);
-//deleteNode(6, tree1.root);
-//prettyPrint(tree1.root);
-//console.log(preorder(tree1.root));
-//console.log(height(tree1.root.left.right, tree1.root));
-insert(8, tree1.root);
-prettyPrint(tree1.root);
-//console.log(depth(tree1.root.left.right, tree1.root));
-console.log(isBalanced(tree1.root));
-insert(101, tree1.root);
-insert(102, tree1.root);
-insert(103, tree1.root);
-insert(104, tree1.root);
-prettyPrint(tree1.root);
-console.log(isBalanced(tree1.root));
-rebalance(tree1);
-console.log(isBalanced(tree1.root));
-prettyPrint(tree1.root);
+//driver script
+const tree = Tree([1, 3, 6, 9, 13, 17, 22, 27, 33, 39]);
+prettyPrint(tree.root);
+console.log(isBalanced(tree.root));
+console.log(levelOrder(tree.root));
+console.log(preorder(tree.root));
+console.log(postorder(tree.root));
+console.log(inorder(tree.root));
+insert(101, tree.root);
+insert(102, tree.root);
+insert(103, tree.root);
+insert(104, tree.root);
+prettyPrint(tree.root);
+console.log(isBalanced(tree.root));
+rebalance(tree);
+prettyPrint(tree.root);
+console.log(isBalanced(tree.root));
+console.log(levelOrder(tree.root));
+console.log(preorder(tree.root));
+console.log(postorder(tree.root));
+console.log(inorder(tree.root));
