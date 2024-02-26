@@ -173,25 +173,47 @@ function height(node, root) {
   return Math.max(height(node.left, root), height(node.right, root)) + 1;
 }
 
-function depth(root, node) {
+function depth(node, root) {
   let level = -1;
   if (root === null) return -1;
   if (
     root === node ||
-    (level = depth(root.left, node)) >= 0 ||
-    (level = depth(root.right, node)) >= 0
+    (level = depth(node, root.left)) >= 0 ||
+    (level = depth(node, root.right)) >= 0
   ) {
     return level + 1;
   }
   return level;
 }
 
+function isBalanced(root) {
+  const leftSubtreeHeight = height(root.left, root.left);
+  const rightSubtreeHeight = height(root.right, root.right);
+  const difference = Math.abs(leftSubtreeHeight - rightSubtreeHeight);
+  console.log(difference);
+  if (difference > 1) return false;
+  else return true;
+}
+
+function rebalance() {}
+
 const tree1 = Tree([1, 2, 4, 5, 6, 7]);
 const tree2 = Tree([1, 3, 6, 9, 13, 17, 22, 27, 33, 39]);
 prettyPrint(tree1.root);
+console.log(isBalanced(tree1.root));
 //insert(3, tree1.root);
 //prettyPrint(tree1.root);
 //deleteNode(6, tree1.root);
 //prettyPrint(tree1.root);
-console.log(preorder(tree1.root));
-console.log(height(tree1.root, tree1.root));
+//console.log(preorder(tree1.root));
+//console.log(height(tree1.root.left.right, tree1.root));
+insert(8, tree1.root);
+prettyPrint(tree1.root);
+//console.log(depth(tree1.root.left.right, tree1.root));
+console.log(isBalanced(tree1.root));
+insert(101, tree1.root);
+insert(102, tree1.root);
+insert(103, tree1.root);
+insert(104, tree1.root);
+prettyPrint(tree1.root);
+console.log(isBalanced(tree1.root));
